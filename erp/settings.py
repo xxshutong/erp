@@ -5,6 +5,8 @@ import dj_database_url
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+PROJECT_DIR = os.getcwd()
+
 ADMINS = (
 # ('Your Name', 'your_email@example.com'),
 )
@@ -102,9 +104,10 @@ ROOT_URLCONF = 'erp.urls'
 WSGI_APPLICATION = 'erp.wsgi.application'
 
 TEMPLATE_DIRS = (
-# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-# Always use forward slashes, even on Windows.
-# Don't forget to use absolute paths, not relative paths.
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    PROJECT_DIR + '/erp/core/views'
 )
 
 INSTALLED_APPS = (

@@ -5,8 +5,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns(
-    '',
-    # url(r'^$', 'erp.core.controller.dashboard', name='dashboard'),
+    'erp.core.controller.dashboard',
+    url(r'^$', 'dashboard'),
     # url(r'^erp/', include('erp.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

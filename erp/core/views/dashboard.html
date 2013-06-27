@@ -5,5 +5,10 @@
 </head>
 <body>
 {{ login_form }}
+
+
+    {% for machine in machines %}
+        {{ machine.id }}
+    {% endfor %}
 </body>
 </html>

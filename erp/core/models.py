@@ -91,9 +91,12 @@ class Machine(models.Model):
     length = models.FloatField('经轴米数')
     wei_mi = models.FloatField('纬密')
     speed = models.IntegerField('车速')
-    daily_output_estimated = models.IntegerField('预计日产量')
-    daily_output_actual = models.IntegerField('实际日产量')
+    daily_output_estimated = models.IntegerField('预计日产量', blank=True, null=True)
+    daily_output_actual = models.IntegerField('实际日产量', blank=True, null=True)
     start_time = models.DateTimeField('上机时间', blank=False)
-    end_time_estimated = models.DateTimeField('预计结束时间')
-    end_time_actual = models.DateTimeField('实际结束时间')
-    remark = models.CharField('备注', max_length=10000)
+    end_time_estimated = models.DateTimeField('预计结束时间', blank=True, null=True)
+    end_time_actual = models.DateTimeField('实际结束时间', blank=True, null=True)
+    remark = models.CharField('备注', max_length=10000, blank=True, null=True)
+
+    def __unicode__(self):
+        return '%s-%s-%s' % (self.no, self.type, self.product)
