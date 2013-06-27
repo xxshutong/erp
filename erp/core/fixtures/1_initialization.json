@@ -1,0 +1,39 @@
+[
+    {
+        "fields": {
+            "notify_time_interval": 4320
+        },
+        "model": "core.Configuration",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "name": "平机"
+        },
+        "model": "core.Type",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "name": "小龙头"
+        },
+        "model": "core.Type",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "name": "大龙头"
+        },
+        "model": "core.Type",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "name": "雪纺"
+        },
+        "model": "core.Product",
+        "pk": 1
+    }
+
+
+]
