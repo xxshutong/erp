@@ -15,6 +15,7 @@ MANAGERS = ADMINS
 
 DB_USERNAME = os.getenv('DB_USERNAME', 'wjzpw')
 DB_PASSWORD = os.getenv('DB_PASSWORD', 'wjzpw')
+
 DATABASES = {'default': dj_database_url.config(default=('postgres://%s:%s@localhost/erp' % (DB_USERNAME, DB_PASSWORD)))}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False

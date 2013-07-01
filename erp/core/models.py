@@ -91,6 +91,8 @@ class Machine(models.Model):
     length = models.FloatField('经轴米数')
     wei_mi = models.FloatField('纬密')
     speed = models.IntegerField('车速')
+    efficiency = models.FloatField('效率', blank=True, null=True)
+    take_up_rate = models.FloatField('织缩率', blank=True, null=True)
     daily_output_estimated = models.IntegerField('预计日产量', blank=True, null=True)
     daily_output_actual = models.IntegerField('实际日产量', blank=True, null=True)
     start_time = models.DateTimeField('上机时间', blank=False)
