@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.db import models
 
+#初始化migration ./manage.py schemamigration core --initial
 
 class Configuration(models.Model):
     """
@@ -20,7 +21,7 @@ class Type(models.Model):
     """
 
     class Meta:
-        verbose_name_plural = u'机器种类列表'
+        verbose_name_plural = u'基础表-机器种类列表'
         verbose_name = u'机器种类'
 
     name = models.CharField('种类名', max_length=50, blank=False)
@@ -35,7 +36,7 @@ class Product(models.Model):
     """
 
     class Meta:
-        verbose_name_plural = u'产品种类列表'
+        verbose_name_plural = u'基础表-产品种类列表'
         verbose_name = u'产品种类'
 
     name = models.CharField('产品名', max_length=255, blank=False)
@@ -50,7 +51,7 @@ class Material(models.Model):
     """
 
     class Meta:
-        verbose_name_plural = u'原料列表'
+        verbose_name_plural = u'基础表-原料列表'
         verbose_name = u'原料'
 
     name = models.CharField('原料成份', max_length=255, blank=False)
@@ -65,7 +66,7 @@ class TouWen(models.Model):
     """
 
     class Meta:
-        verbose_name_plural = u'头纹列表'
+        verbose_name_plural = u'基础表-头纹列表'
         verbose_name = u'头纹'
 
     name = models.CharField('头纹名称', max_length=255, blank=False)
@@ -80,7 +81,7 @@ class Machine(models.Model):
     """
 
     class Meta:
-        verbose_name_plural = u'织机设备列表'
+        verbose_name_plural = u'1-织机设备列表'
         verbose_name = u'织机设备'
 
     no = models.CharField('机号', blank=False, null=False, max_length=20)
