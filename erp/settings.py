@@ -1,3 +1,4 @@
+# coding: utf-8
 # Django settings for erp project.
 import os
 import dj_database_url
@@ -31,6 +32,12 @@ TIME_ZONE = 'Asia/Shanghai'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'zh-cn'
+
+# date/time format
+USE_L10N = True
+DATE_FORMAT = 'Y年m月d日'
+DATETIME_FORMAT = 'Y年m月d日H时i分'
+
 
 SITE_ID = 1
 

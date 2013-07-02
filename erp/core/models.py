@@ -2,6 +2,8 @@
 from django.db import models
 
 #初始化migration ./manage.py schemamigration core --initial
+#生成migration ./manage.py schemamigration core --auto
+#应用migration ./manage.py migrate core
 
 class Configuration(models.Model):
     """
@@ -90,6 +92,7 @@ class Machine(models.Model):
     material = models.ForeignKey(Material, name='material', verbose_name='原料成份')
     tou_wen = models.ForeignKey(TouWen, name='tou_wen', verbose_name='头纹')
     length = models.FloatField('经轴米数')
+    length_available = models.FloatField('经轴可织米数', null=True, blank=True)
     wei_mi = models.FloatField('纬密')
     speed = models.IntegerField('车速')
     efficiency = models.FloatField('效率', blank=True, null=True)
