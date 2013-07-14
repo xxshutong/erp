@@ -6,72 +6,34 @@
 
 {% block content %}
 
-    <div class="row-fluid machine_list">
-        <ul class="thumbnails">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>机号</th>
+                <th>正做布种</th>
+                <th>上机时间</th>
+                <th>预计下机时间</th>
+            </tr>
+        </thead>
+        <tbody>
+
             {% for machine in machines %}
-                <li class="span2">
-                    <div class="thumbnail">
-
-                        <div class="caption">
-                            <p>
-                                <span class="label label-important">
-                                    {{ machine.no }}&nbsp;-&nbsp;{{ machine.type }}
-                                </span>
-                            </p>
-                            <p>
-                                <span class="label label-info">正做布种</span>
-                                <label class="span2">雪纺</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">原料</span>
-                                <label class="span2">{{ machine.material }}</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">头纹</span>
-                                <label class="span2">{{ machine.tou_wen }}</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">经纬长度</span>
-                                <label class="span2">{{ machine.length }}</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">车速</span>
-                                <label class="span2">{{ machine.speed }}</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">纬密</span>
-                                <label class="span2">{{ machine.wei_mi }}</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">预计日产量</span>
-                                <label class="span2">{{ machine.daily_output_estimated }}</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">上机时间</span>
-                                <label class="span2">{{ machine.start_time }}</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">预计下机时间</span>
-                                <label class="span2">{{ machine.end_time_estimated|default_if_none:"暂无" }}</label>
-                            </p>
-                            <p>
-                                <span class="label label-info">备注</span>
-                                <label class="span2">{{ machine.remark|default:"暂无" }}</label>
-                            </p>
-                        </div>
-                    </div>
-              </li>
-
+                <tr class="warning">
+                    <td><a style="text-decoration: underline" target="_blank"
+                           href="/admin/core/machine/{{ machine.id }}/"> {{ machine.no }} </a></td>
+                    <td>{{ machine.type }}</td>
+                    <td>{{ machine.start_time }}</td>
+                    <td>{{ machine.end_time_estimated|default_if_none:"暂无" }}</td>
+                </tr>
             {% endfor %}
 
+        </tbody>
 
+    </table>
 
-
-
-
-
-            </ul>
-          </div>
-
+    <p>
+        <span class="label label-info">注意!</span>
+        点击机号可查看织机详细信息
+    </p>
 {% endblock %}
 
