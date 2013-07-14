@@ -18,7 +18,7 @@
         <tbody>
 
             {% for machine in machines %}
-                <tr class="warning">
+                <tr {% if machine.warn %}class="warning"{% endif %}>
                     <td><a style="text-decoration: underline" target="_blank"
                            href="/admin/core/machine/{{ machine.id }}/"> {{ machine.no }} </a></td>
                     <td>{{ machine.type }}</td>

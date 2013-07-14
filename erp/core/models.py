@@ -14,7 +14,10 @@ class Configuration(models.Model):
         verbose_name_plural = u'配置信息，只有一条记录'
         verbose_name = u'配置信息'
 
-    notify_time_interval = models.IntegerField('提醒时间间隔（单位分钟）', blank=False, null=False)
+    notify_time_interval = models.IntegerField('提醒时间间隔（单位天）', blank=False, null=False)
+
+    def __unicode__(self):
+        return '配置信息'
 
 
 class Type(models.Model):

@@ -1,7 +1,7 @@
 [
     {
         "fields": {
-            "notify_time_interval": 4320
+            "notify_time_interval": 1
         },
         "model": "core.Configuration",
         "pk": 1
