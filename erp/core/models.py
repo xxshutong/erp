@@ -17,7 +17,7 @@ class Configuration(models.Model):
     notify_time_interval = models.IntegerField('提醒时间间隔（单位天）', blank=False, null=False)
 
     def __unicode__(self):
-        return '配置信息'
+        return u'配置信息'
 
 
 class Type(models.Model):
