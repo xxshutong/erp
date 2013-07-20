@@ -6,6 +6,28 @@
 
 {% block content %}
 
+    <div class="pagination">
+        <ul>
+            {% if page_machines.has_previous %}
+                <li><a href="?page={{ page_machines.previous_page_number }}">«</a></li>
+            {% else %}
+                <li><a href="#">«</a></li>
+            {% endif %}
+
+
+            {% for page_no in page_machines.paginator.page_range %}
+                <li><a href="?page={{ page_no }}">{{ page_no }}</a></li>
+            {% endfor %}
+
+            {% if page_machines.has_next %}
+                <li><a href="?page={{ page_machines.next_page_number }}">»</a></li>
+            {% else %}
+                <li><a href="#">»</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -18,7 +40,7 @@
         </thead>
         <tbody>
 
-            {% for machine in machines %}
+            {% for machine in page_machines %}
                 <tr {% if machine.warn %}class="warning"{% endif %}>
                     <td><a style="text-decoration: underline" target="_blank"
                            href="/admin/core/machine/{{ machine.id }}/"> {{ machine.no }} </a></td>
