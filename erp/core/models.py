@@ -15,6 +15,8 @@ class Configuration(models.Model):
         verbose_name = u'配置信息'
 
     notify_time_interval = models.IntegerField('提醒时间间隔（单位天）', blank=False, null=False)
+    page_size = models.IntegerField('每页记录条数', default=10);
+
 
     def __unicode__(self):
         return u'配置信息'

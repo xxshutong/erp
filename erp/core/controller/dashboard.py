@@ -7,8 +7,6 @@ from erp.core.models import Machine, Configuration
 
 DASHBOARD_PAGE = 'dashboard.html'
 
-PAGE_SIZE = 10
-
 def dashboard(request):
     machines = Machine.objects.all()
     configuration = Configuration.objects.all()[0]
@@ -19,13 +17,13 @@ def dashboard(request):
             machine.warn = datetime.datetime.utcnow() > temp_end.replace(tzinfo=None)
             machine.error = datetime.datetime.utcnow() > machine.end_time_estimated.replace(tzinfo=None)
 
-    paginator = Paginator(machines, PAGE_SIZE)
+    paginator = Paginator(machines, configuration.page_size)
 
     # get page no
     page = request.GET.get('page')
 
     # get records of current page
-    try :
+    try:
         page_machines = paginator.page(page)
     except PageNotAnInteger:
         page_machines = paginator.page(1)
