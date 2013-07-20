@@ -41,7 +41,7 @@
         <tbody>
 
             {% for machine in page_machines %}
-                <tr {% if machine.warn %}class="warning"{% endif %}>
+                <tr {% if machine.error %}class="error"{% elif machine.warn %}class="warning"{% endif %}>
                     <td><a style="text-decoration: underline" target="_blank"
                            href="/admin/core/machine/{{ machine.id }}/"> {{ machine.no }} </a></td>
                     <td>{{ machine.type }}</td>
