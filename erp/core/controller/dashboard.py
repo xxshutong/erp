@@ -8,7 +8,7 @@ from erp.core.models import Machine, Configuration
 DASHBOARD_PAGE = 'dashboard.html'
 
 def dashboard(request):
-    machines = Machine.objects.all()
+    machines = Machine.objects.all().order_by('no')
     configuration = Configuration.objects.all()[0]
     # warn if close to end
     for machine in machines:
