@@ -91,7 +91,7 @@ class Machine(models.Model):
         verbose_name_plural = u'1-织机设备列表'
         verbose_name = u'织机设备'
 
-    no = models.CharField('机号', blank=False, null=False, max_length=20)
+    no = models.IntegerField('机号', blank=False, null=False)
     type = models.ForeignKey(Type, name='type', verbose_name="种类")
     product = models.ForeignKey(Product, name='product', verbose_name='产品名称')
     material = models.ForeignKey(Material, name='material', verbose_name='原料成份')
