@@ -15,7 +15,7 @@ class MachineAdmin(admin.ModelAdmin):
     def save_model(self, request, machine, form, change):
         # custom stuff here
         if machine.speed and machine.wei_mi and machine.efficiency:
-            machine.daily_output_estimated = machine.speed / machine.wei_mi * 2.54 * 60 / 100 * 24 * machine.efficiency
+            machine.daily_output_estimated = machine.speed / machine.wei_mi * 60 / 100 * 24 * machine.efficiency
         if machine.length and machine.take_up_rate:
             machine.length_available = machine.length * (1 - machine.take_up_rate)
         if machine.daily_output_estimated and machine.length_available and machine.start_time:
