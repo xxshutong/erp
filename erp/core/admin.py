@@ -1,3 +1,4 @@
+# coding: utf-8
 from datetime import timedelta
 from django.contrib import admin
 from erp.core.models import Type, Configuration, Product, Material, TouWen, Machine

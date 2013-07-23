@@ -110,4 +110,4 @@ class Machine(models.Model):
     remark = models.CharField('备注', max_length=10000, blank=True, null=True)
 
     def __unicode__(self):
-        return '%s-%s-%s' % (self.no, self.type, self.product)
+        return u'机号-%s' % self.no
