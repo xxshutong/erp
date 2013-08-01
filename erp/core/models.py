@@ -103,10 +103,10 @@ class Machine(models.Model):
     efficiency = models.FloatField('效率', blank=True, null=True)
     take_up_rate = models.FloatField('织缩率', blank=True, null=True)
     daily_output_estimated = models.IntegerField('预计日产量', blank=True, null=True)
-    daily_output_actual = models.IntegerField('实际日产量', blank=True, null=True)
+    # daily_output_actual = models.IntegerField('实际日产量', blank=True, null=True)
     start_time = models.DateTimeField('上机时间', blank=False)
     end_time_estimated = models.DateTimeField('预计结束时间', blank=True, null=True)
-    end_time_actual = models.DateTimeField('实际结束时间', blank=True, null=True)
+    # end_time_actual = models.DateTimeField('实际结束时间', blank=True, null=True)
     remark = models.CharField('备注', max_length=10000, blank=True, null=True)
 
     def __unicode__(self):
