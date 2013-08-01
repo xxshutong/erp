@@ -34,6 +34,8 @@
                 <th>机号</th>
                 <th>种类</th>
                 <th>正做布种</th>
+                <th>车速</th>
+                <th>效率</th>
                 <th>上机时间</th>
                 <th>预计下机时间</th>
             </tr>
@@ -46,6 +48,8 @@
                            href="/admin/core/machine/{{ machine.id }}/"> {{ machine.no }} </a></td>
                     <td>{{ machine.type }}</td>
                     <td>{{ machine.product }}</td>
+                    <td>{{ machine.speed }}</td>
+                    <td>{{ machine.efficiency|default:"暂无" }}</td>
                     <td>{{ machine.start_time }}</td>
                     <td>{{ machine.end_time_estimated|default_if_none:"暂无" }}</td>
                 </tr>
