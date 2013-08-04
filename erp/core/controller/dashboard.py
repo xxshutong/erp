@@ -1,15 +1,34 @@
 # coding: utf-8
 import datetime
+import time
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from erp.core.models import Machine, Configuration
+from erp.core.models import Machine, Configuration, Product
 
 DASHBOARD_PAGE = 'dashboard.html'
 
 
 def dashboard(request):
-    machines = Machine.objects.all().order_by('no')
+    # 获取查找参数
+    no = request.GET.get('no')
+    product = request.GET.get('product')
+    start_date = request.GET.get('start_date')
+    kwargs = {}
+    if no:
+        kwargs['no'] = no
+    if product:
+        kwargs['product'] = product
+    if start_date:
+        date = datetime.datetime.fromtimestamp(time.mktime(time.strptime(start_date, "%Y-%m-%d")))
+        kwargs['start_time__gte'] = date
+        temp = (date + datetime.timedelta(days=1))
+        kwargs['start_time__lte'] = temp
+
+
+
+    machines = Machine.objects.filter(**kwargs).order_by('no')
+    products = Product.objects.all()
     configuration = Configuration.objects.all()[0]
     # warn if close to end
     for machine in machines:
@@ -40,5 +59,8 @@ def dashboard(request):
     return render_to_response(
         DASHBOARD_PAGE, {}, RequestContext(request, {
             'page_machines': page_machines,
+            'products': products,
+            # 'no': no if no else '',
+            # 'product_id': product if product else None
         }),
     )

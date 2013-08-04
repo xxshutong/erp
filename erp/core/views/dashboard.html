@@ -6,27 +6,48 @@
 
 {% block content %}
 
-    <div class="pagination">
-        <ul>
-            {% if page_machines.has_previous %}
-                <li><a href="?page={{ page_machines.previous_page_number }}">«</a></li>
-            {% else %}
-                <li><a href="#">«</a></li>
-            {% endif %}
-
-
-            {% for page_no in page_machines.paginator.page_range %}
-                <li><a href="?page={{ page_no }}">{{ page_no }}</a></li>
+    <form id="searchForm" class="form-inline" action="/">
+        <input type="text" name="no" class="form-control" placeholder="机号" value="{{ no }}" style="width: 100px;">
+        <select name="product" class="span2">
+            <option value="">请选择</option>
+            {% for product in products %}
+                <option value="{{ product.id }}"
+                        {% if  product.id == product_id %}selected="selected" {% endif %}>{{ product.name }}</option>
             {% endfor %}
+        </select>
+        <div class="input-append date" id="dp3" data-date="2013-08-01" data-date-format="yyyy-mm-dd">
+            <input class="span2" size="16" name="start_date" type="text" readonly="">
+            <span class="add-on"><i class="icon-calendar"></i></span>
+	    </div>
+        <button id="submit" type="submit" class="btn btn-default">搜索</button>
 
-            {% if page_machines.has_next %}
-                <li><a href="?page={{ page_machines.next_page_number }}">»</a></li>
-            {% else %}
-                <li><a href="#">»</a></li>
-            {% endif %}
+        <div class="pagination">
+            <ul>
+                {% if page_machines.has_previous %}
+                    <li><a href="javascript:void(0)" class="page"
+                           onclick="return goToPage({{ page_machines.previous_page_number }})"
+                           page="{{ page_machines.previous_page_number }}">«</a></li>
+                {% else %}
+                    <li><a href="#">«</a></li>
+                {% endif %}
 
-        </ul>
-    </div>
+
+                {% for page_no in page_machines.paginator.page_range %}
+                    <li><a href="javascript:void(0)" class="page" onclick="return goToPage({{ page_no }})"
+                           page="{{ page_no }}">{{ page_no }}</a></li>
+                {% endfor %}
+
+                {% if page_machines.has_next %}
+                    <li><a href="javascript:void(0)" class="page"
+                           onclick="return goToPage({{ page_machines.next_page_number }})">»</a></li>
+                {% else %}
+                    <li><a href="#">»</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </form>
+
 
     <table class="table table-bordered table-hover">
         <thead>
@@ -65,5 +86,11 @@
         <span class="label label-info">注意!</span>
         点击机号可查看织机详细信息
     </p>
+    {% block js %}
+        <script type="text/javascript">
+
+            $('#dp3').datepicker();
+        </script>
+    {% endblock %}
 {% endblock %}
 
