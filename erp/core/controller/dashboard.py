@@ -10,6 +10,7 @@ DASHBOARD_PAGE = 'dashboard.html'
 
 
 def dashboard(request):
+    query = '/?'
     # 获取查找参数
     no = request.GET.get('no')
     product = request.GET.get('product')
@@ -17,9 +18,12 @@ def dashboard(request):
     kwargs = {}
     if no:
         kwargs['no'] = no
+        query += ('no=' + no + '&')
     if product:
         kwargs['product'] = product
+        query += ('product=' + product + '&')
     if start_date:
+        query += ('start_date=' + start_date + '&')
         date = datetime.datetime.fromtimestamp(time.mktime(time.strptime(start_date, "%Y-%m-%d")))
         kwargs['start_time__gte'] = date
         temp = (date + datetime.timedelta(days=1))
@@ -60,6 +64,8 @@ def dashboard(request):
         DASHBOARD_PAGE, {}, RequestContext(request, {
             'page_machines': page_machines,
             'products': products,
+            'query': query,
+            'has_query': len(query) > 2
             # 'no': no if no else '',
             # 'product_id': product if product else None
         }),

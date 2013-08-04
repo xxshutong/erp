@@ -22,29 +22,47 @@
         <button id="submit" type="submit" class="btn btn-default">搜索</button>
 
         <div class="pagination">
-            <ul>
-                {% if page_machines.has_previous %}
-                    <li><a href="javascript:void(0)" class="page"
-                           onclick="return goToPage({{ page_machines.previous_page_number }})"
-                           page="{{ page_machines.previous_page_number }}">«</a></li>
-                {% else %}
-                    <li><a href="#">«</a></li>
-                {% endif %}
+            {% if has_query %}
+                <ul>
+                    {% if page_machines.has_previous %}
+                        <li><a href="{{ query }}page={{ page_machines.previous_page_number }}" class="page">«</a></li>
+                    {% else %}
+                        <li><a href="#">«</a></li>
+                    {% endif %}
 
 
-                {% for page_no in page_machines.paginator.page_range %}
-                    <li><a href="javascript:void(0)" class="page" onclick="return goToPage({{ page_no }})"
-                           page="{{ page_no }}">{{ page_no }}</a></li>
-                {% endfor %}
+                    {% for page_no in page_machines.paginator.page_range %}
+                        <li><a href="{{ query }}page={{ page_no }}" class="page">{{ page_no }}</a></li>
+                    {% endfor %}
 
-                {% if page_machines.has_next %}
-                    <li><a href="javascript:void(0)" class="page"
-                           onclick="return goToPage({{ page_machines.next_page_number }})">»</a></li>
-                {% else %}
-                    <li><a href="#">»</a></li>
-                {% endif %}
+                    {% if page_machines.has_next %}
+                        <li><a href="{{ query }}page={{ page_machines.next_page_number }}">»</a></li>
+                    {% else %}
+                        <li><a href="#">»</a></li>
+                    {% endif %}
 
-            </ul>
+                </ul>
+            {% else %}
+                <ul>
+                    {% if page_machines.has_previous %}
+                        <li><a href="/?page={{ page_machines.previous_page_number }}" class="page">«</a></li>
+                    {% else %}
+                        <li><a href="#">«</a></li>
+                    {% endif %}
+
+
+                    {% for page_no in page_machines.paginator.page_range %}
+                        <li><a href="/?page={{ page_no }}" class="page">{{ page_no }}</a></li>
+                    {% endfor %}
+
+                    {% if page_machines.has_next %}
+                        <li><a href="/?page={{ page_machines.next_page_number }}">»</a></li>
+                    {% else %}
+                        <li><a href="#">»</a></li>
+                    {% endif %}
+
+                </ul>
+            {% endif %}
         </div>
     </form>
 
