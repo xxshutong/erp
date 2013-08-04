@@ -16,13 +16,12 @@
             {% endfor %}
         </select>
         <div class="input-append date" id="dp3" data-date="2013-08-01" data-date-format="yyyy-mm-dd">
-            <input class="span2" size="16" name="start_date" type="text" readonly="">
+            <input class="span2" size="16" name="start_date" type="text" readonly="" placeholder="上机时间">
             <span class="add-on"><i class="icon-calendar"></i></span>
 	    </div>
         <button id="submit" type="submit" class="btn btn-default">搜索</button>
 
         <div class="pagination">
-            {% if has_query %}
                 <ul>
                     {% if page_machines.has_previous %}
                         <li><a href="{{ query }}page={{ page_machines.previous_page_number }}" class="page">«</a></li>
@@ -42,27 +41,6 @@
                     {% endif %}
 
                 </ul>
-            {% else %}
-                <ul>
-                    {% if page_machines.has_previous %}
-                        <li><a href="/?page={{ page_machines.previous_page_number }}" class="page">«</a></li>
-                    {% else %}
-                        <li><a href="#">«</a></li>
-                    {% endif %}
-
-
-                    {% for page_no in page_machines.paginator.page_range %}
-                        <li><a href="/?page={{ page_no }}" class="page">{{ page_no }}</a></li>
-                    {% endfor %}
-
-                    {% if page_machines.has_next %}
-                        <li><a href="/?page={{ page_machines.next_page_number }}">»</a></li>
-                    {% else %}
-                        <li><a href="#">»</a></li>
-                    {% endif %}
-
-                </ul>
-            {% endif %}
         </div>
     </form>
 

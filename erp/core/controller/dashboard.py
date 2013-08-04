@@ -65,7 +65,7 @@ def dashboard(request):
             'page_machines': page_machines,
             'products': products,
             'query': query,
-            'has_query': len(query) > 2
+            # 'has_query': len(query) > 2
             # 'no': no if no else '',
             # 'product_id': product if product else None
         }),
