@@ -39,7 +39,7 @@ LANGUAGE_CODE = 'zh-cn'
 # date/time format
 USE_L10N = True
 DATE_FORMAT = 'Y年m月d日'
-DATETIME_FORMAT = 'Y年m月d日H时i分'
+DATETIME_FORMAT = 'Y年m月d日H时'
 
 
 SITE_ID = 1

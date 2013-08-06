@@ -42,10 +42,10 @@ def dashboard(request):
             machine.output_estimated = timedelta.total_seconds() / 60 * machine.speed / machine.wei_mi / 100 * machine.efficiency
 
         # 计算是否即将到结束时间
-        if machine.end_time_estimated is not None:
-            temp_end = machine.end_time_estimated - datetime.timedelta(days=configuration.notify_time_interval)
+        if machine.end_time_estimated_display is not None:
+            temp_end = machine.end_time_estimated_display - datetime.timedelta(days=configuration.notify_time_interval)
             machine.warn = datetime.datetime.utcnow() > temp_end.replace(tzinfo=None)
-            machine.error = datetime.datetime.utcnow() > machine.end_time_estimated.replace(tzinfo=None)
+            machine.error = datetime.datetime.utcnow() > machine.end_time_estimated_display.replace(tzinfo=None)
 
     paginator = Paginator(machines, configuration.page_size)
 

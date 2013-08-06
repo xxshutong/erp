@@ -70,7 +70,7 @@
                     <td>{{ machine.efficiency|default:"暂无" }}</td>
                     <td>{{ machine.output_estimated|floatformat:2|default:"暂无" }}</td>
                     <td>{{ machine.start_time }}</td>
-                    <td>{{ machine.end_time_estimated|default_if_none:"暂无" }}</td>
+                    <td>{{ machine.end_time_estimated_display|default_if_none:"暂无" }}</td>
                 </tr>
             {% endfor %}
 

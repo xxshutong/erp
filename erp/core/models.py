@@ -1,9 +1,13 @@
 # coding: utf-8
+from datetime import timedelta, tzinfo
 from django.db import models
 
 #初始化migration ./manage.py schemamigration core --initial
 #生成migration ./manage.py schemamigration core --auto
 #应用migration ./manage.py migrate core
+from erp.settings import DATETIME_FORMAT
+import pytz
+
 
 class Configuration(models.Model):
     """
@@ -105,9 +109,25 @@ class Machine(models.Model):
     daily_output_estimated = models.IntegerField('预计日产量', blank=True, null=True)
     # daily_output_actual = models.IntegerField('实际日产量', blank=True, null=True)
     start_time = models.DateTimeField('上机时间', blank=False)
-    end_time_estimated = models.DateTimeField('预计结束时间', blank=True, null=True)
+    # end_time_estimated = models.DateTimeField('预计结束时间', blank=True, null=True)
     # end_time_actual = models.DateTimeField('实际结束时间', blank=True, null=True)
     remark = models.CharField('备注', max_length=10000, blank=True, null=True)
 
     def __unicode__(self):
         return u'机号-%s' % self.no
+
+    def end_time_estimated(self):
+        if self.speed and self.wei_mi and self.efficiency and self.length_available and self.start_time:
+            interval = self.length_available / (self.speed / self.wei_mi * 60 / 100 * self.efficiency)
+            return self.start_time + timedelta(hours=interval)
+        return None
+
+    def end_time_estimated_format(self):
+        temp = self.end_time_estimated().astimezone(pytz.timezone('Asia/Shanghai'))
+        if temp is not None:
+            return temp.strftime("%Y年%m月%d日%H时")
+        return None
+
+
+    end_time_estimated_format.short_description = u'预计结束时间'
+    end_time_estimated_display = property(end_time_estimated)
