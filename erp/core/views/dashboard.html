@@ -53,6 +53,7 @@
                 <th>正做布种</th>
                 <th>车速</th>
                 <th>效率</th>
+                <th>经轴米数</th>
                 <th>预计已有产量</th>
                 <th>上机时间</th>
                 <th>预计下机时间</th>
@@ -68,6 +69,7 @@
                     <td>{{ machine.product }}</td>
                     <td>{{ machine.speed }}</td>
                     <td>{{ machine.efficiency|default:"暂无" }}</td>
+                    <td>{{ machine.length }}</td>
                     <td>{{ machine.output_estimated|floatformat:2|default:"暂无" }}</td>
                     <td>{{ machine.start_time }}</td>
                     <td>{{ machine.end_time_estimated_display|default_if_none:"暂无" }}</td>
